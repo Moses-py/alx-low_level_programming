@@ -26,7 +26,7 @@ void print_number(int n)
  */
 void print_integer(int m)
 {
-	int i = 1000;
+	int i = 1000000000;
 
 	for (; i >= 1; i /= 10)
 		if (m / i != 0)
