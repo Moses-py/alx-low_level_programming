@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * print_listint: This is a function that prints all elements
+ * print_listint - This is a function that prints all elements
  * present in a linked list
  * @h: A pointer to the type of a single listint to be printed
  *
