@@ -8,7 +8,7 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int open, write, iterator = 0;
+	int open_file, write_file, iterator = 0;
 
 	if (filename == NULL)
 		return (-1);
@@ -19,13 +19,13 @@ int create_file(const char *filename, char *text_content)
 			iterator++;
 	}
 
-	open = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
-	write = write(o, text_content, iterator);
+	open_file = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	write_file = write(o, text_content, iterator);
 
-	if (open == -1 || write == -1)
+	if (open_file == -1 || write_file == -1)
 		return (-1);
 
-	close(open);
+	close(open_file);
 
 	return (1);
 }
