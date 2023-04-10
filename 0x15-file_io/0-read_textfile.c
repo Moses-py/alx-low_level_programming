@@ -12,24 +12,18 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	ssize_t open, read, write;
-	char *pAlloc_mem = NULL;
-
-	if (filename == NULL)
-		return (0);
-
-	pAlloc_mem = (char *) malloc(letters * sizeof(char));
-	if (pAlloc_mem == NULL)
-		return (0);
-
-	open = open(filename, O_RDONLY);
-	read = read(o, pAlloc_mem, letters);
-	write = write(STDOUT_FILENO, pAlloc_mem, r);
+	char *pAlloc_mem;
+	
+	pAlloc_mem = malloc(letters * sizeof(char));
+       	open = open(filename, O_RDONLY);
+	read = read(open, pAlloc_mem, letters);
 
 	if (open == -1 || read == -1 || write == -1 || write != read)
 	{
 		free(pAlloc_mem);
 		return (0);
 	}
+	write = write(STDOUT_FILENO, pAlloc_mem, read);
 
 	free(pAlloc_mem);
 	close(open);
