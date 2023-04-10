@@ -11,22 +11,19 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t open, read, write;
 	char *pAlloc_mem;
-	
-	pAlloc_mem = malloc(letters * sizeof(char));
-       	open = open(filename, O_RDONLY);
-	read = read(open, pAlloc_mem, letters);
+	ssize_t open_file;
+	ssize_t write_file;
+	ssize_t read_file;
 
-	if (open == -1 || read == -1 || write == -1 || write != read)
-	{
-		free(pAlloc_mem);
+	open_file = open(filename, O_RDONLY);
+	if (open_file == -1)
 		return (0);
-	}
-	write = write(STDOUT_FILENO, pAlloc_mem, read);
+	pAlloc_mem = malloc(sizeof(char) * letters);
+	read_file = read(fd, buf, letters);
+	write_file = write(STDOUT_FILENO, buf, t);
 
 	free(pAlloc_mem);
-	close(open);
-
-	return (write);
+	close(open_file);
+	return (write_file);
 }
