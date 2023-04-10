@@ -10,22 +10,22 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int aggregate;
+	unsigned int aggregate = 0;
 	unsigned int index;
-	int length;
+	int iterator;
 
 	if (b == NULL)
 		return (0);
 
-	for (length = 0; b[length]; length++)
+	for (iterator = 0; b[iterator]; iterator++)
 	{
-		if (b[length] != '0' && b[length] != '1')
+		if (b[iterator] != '0' && b[iterator] != '1')
 			return (0);
 	}
 
-	for (index = 1, index = 0, length--; length >= 0; length--, index *= 2)
+	for (index = 1, iterator--; iterator >= 0; iterator--, index *= 2)
 	{
-		if (b[length] == '1')
+		if (b[iterator] == '1')
 			aggregate += index;
 	}
 
