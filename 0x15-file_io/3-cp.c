@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 
 	alloc_mem = allocate_memory(argv[2]);
 	copy_from = open(argv[1], O_RDONLY);
-	read_file = read(from, buffer, 1024);
+	read_file = read(copy_from, alloc_mem, 1024);
 	copy_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 		}
 
 		write_file = write(copy_to, alloc_mem, read_file);
-		if (copy_to == -1 || write == -1)
+		if (copy_to == -1 || write_file == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't write to %s\n", argv[2]);
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 		read_file = read(copy_from, alloc_mem, 1024);
 		copy_to = open(argv[2], O_WRONLY | O_APPEND);
 
-	} while (read > 0);
+	} while (read_file > 0);
 
 	free(alloc_mem);
 	close_file_descriptor(copy_from);
