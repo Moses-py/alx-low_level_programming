@@ -52,7 +52,7 @@ void close_file_descriptor(int FD)
  */
 int main(int argc, char *argv[])
 {
-	int copy_from, copy_to, read, write;
+	int copy_from, copy_to, read_file, write_file;
 	char *alloc_mem;
 
 	if (argc != 3)
@@ -63,11 +63,11 @@ int main(int argc, char *argv[])
 
 	alloc_mem = allocate_memory(argv[2]);
 	copy_from = open(argv[1], O_RDONLY);
-	read = read(from, buffer, 1024);
+	read_file = read(from, buffer, 1024);
 	copy_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
-		if (copy_from == -1 || read == -1)
+		if (copy_from == -1 || read_file == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 			exit(98);
 		}
 
-		write = write(copy_to, alloc_mem, read);
+		write_file = write(copy_to, alloc_mem, read_file);
 		if (copy_to == -1 || write == -1)
 		{
 			dprintf(STDERR_FILENO,
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 
-		read = read(copy_from, alloc_mem, 1024);
+		read_file = read(copy_from, alloc_mem, 1024);
 		copy_to = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (read > 0);
