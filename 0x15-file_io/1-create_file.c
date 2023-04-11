@@ -15,19 +15,14 @@ int create_file(const char *filename, char *text_content)
 	if (filename == NULL)
 		return (-1);
 
-	if (text_content = NULL)
-		text_content = "";
-
-	while (text_content[iterator] != '\0')
-		iterator++
+	while (text_content[iterator] != NULL)
+		iterator++;
 
 	open_file = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
 	write_file = write(open_file, text_content, iterator);
 
 	if (open_file == -1 || write_file == -1)
 		return (-1);
-
-	close(open_file);
 
 	return (1);
 }
