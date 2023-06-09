@@ -3,9 +3,8 @@
 /**
  * hash_table_create - Function that Creates a hash table.
  * @size: The size of the array tabke.
- *
- * Return: If error - NULL.
- *         Otherwise - a pointer to the new hash table.
+ * Return: If error - NULL
+ * Otherwise - a pointer to the new hash table.
  */
 hash_table_t *hash_table_create(unsigned long int size)
 {
